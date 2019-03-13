@@ -3,34 +3,6 @@ import "./App.css";
 import DrumBoard from "./components/DrumBoard";
 import Display from "./components/Display";
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			soundFX: soundsList,
-			displayText: ""
-		};
-	}
-
-	updateDisplay = id => {
-		this.setState({ displayText: id });
-	};
-
-	render() {
-		const { soundFX, displayText } = this.state;
-		return (
-			<div className="App">
-				<div className="container">
-					<div id="drum-machine" className="mx-auto">
-						<Display displayText={displayText} />
-						<DrumBoard updateDisplay={this.updateDisplay} soundFX={soundFX} />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
 const soundsList = [
 	{
 		keyCode: 81,
@@ -87,5 +59,30 @@ const soundsList = [
 		url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
 	}
 ];
+
+class App extends Component {
+	state = {
+		soundFX: soundsList,
+		displayText: ""
+	};
+
+	updateDisplay = id => {
+		this.setState({ displayText: id });
+	};
+
+	render() {
+		const { soundFX, displayText } = this.state;
+		return (
+			<div className="App">
+				<div className="container">
+					<div id="drum-machine" className="mx-auto">
+						<Display displayText={displayText} />
+						<DrumBoard updateDisplay={this.updateDisplay} soundFX={soundFX} />
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
 
 export default App;
